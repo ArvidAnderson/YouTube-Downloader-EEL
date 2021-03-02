@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="css/spinner/throbber.css">
     <!-- CHANGE THUMBNAIL ON LOAD-->
     <script type="text/javascript">
         window.onload = eel.setThumbnailandTitle();
@@ -20,12 +21,15 @@
 </head>
 
 <body style="background-color:#303030;">
+    <div id="loaderdiv" style="display: block;" class="loaderdiv">
+        <div class="loader"></div>
+    </div>
     <div style="display: none;" id="wrapper">
         <!-- Thumbnail -->
         <div id="thumbnailtitlediv" style="margin-top: 20px; margin-bottom: 20px;"
             class="container-fluid text-center">
             <img style="border-radius: 10px; background-color: #e2e6ea; border-color: #dae0e5;" id="thumbnail"
-                src="img/YouTube-Logo.png" width="400px" height="225px" alt="">
+                src="img/YouTube-Logo.png" width="455px" height="255px" alt="">
             <p class="text-center"
                 style="margin-top: 5px; color: #212529; border-radius: 5px; background-color: #e2e6ea; border-color: #dae0e5;"
                 id="title">Title</p>
@@ -54,6 +58,7 @@
             document.getElementById("thumbnail").src = thumbnail;
             document.getElementById("title").innerHTML = title;
             document.getElementById("wrapper").style.display = "block";
+            document.getElementById("loaderdiv").style.display = "none";
             onoffButtons(true);
         }
         //Set filepath
@@ -62,6 +67,7 @@
             document.getElementById("filepath").value = folder
             onoffButtons(false)
         }
+        //Enable or Disable Buttons
         function onoffButtons(yn) {
             if (yn == true) {
                 document.getElementById("da").disabled = true;
