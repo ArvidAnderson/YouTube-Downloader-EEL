@@ -4,7 +4,6 @@
 <head>
     <title>YouTube Downloader</title>
     <link rel="icon" href="favicon.ico" />
-    <!-- Favicon made by Vecteezy.com-->
     <link rel="manifest" href="/site.webmanifest">
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.css" rel="stylesheet" />
@@ -15,34 +14,63 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="/eel.js"></script>
     <!-- CHANGE THUMBNAIL ON LOAD-->
-    <script type="text/javascript">window.onload = eel.setThumbnailandTitle();</script>
-
+    <script type="text/javascript">
+        window.onload = eel.setThumbnailandTitle();
+    </script>
 </head>
 
 <body style="background-color:#303030;">
     <div style="display: none;" id="wrapper">
         <!-- Thumbnail -->
-        <div id="thumbnailtitlediv" style="padding-top: 40px; padding-bottom: 40px;"
+        <div id="thumbnailtitlediv" style="margin-top: 20px; margin-bottom: 20px;"
             class="container-fluid text-center">
-            <img style="border-radius: 5px; background-color: #e2e6ea; border-color: #dae0e5;" id="thumbnail"
+            <img style="border-radius: 10px; background-color: #e2e6ea; border-color: #dae0e5;" id="thumbnail"
                 src="img/YouTube-Logo.png" width="400px" height="225px" alt="">
-            <h4 class="text-center"
-                style="margin-top: 10px; padding-top: 
-                4px; padding-bottom: 4px; color: #212529; border-radius: 5px; background-color: #e2e6ea; border-color: #dae0e5;" id="title">
-                Title</h4>
+            <p class="text-center"
+                style="margin-top: 5px; color: #212529; border-radius: 5px; background-color: #e2e6ea; border-color: #dae0e5;"
+                id="title">Title</p>
+        </div>
+
+        <div style="margin-bottom: 7px;" class="container-fluid text-center">
+            <div class="input-group">
+                <input id="filepath" class="form-control input-lg" type="text" placeholder="Your chosen filepath" readonly>
+                <span class="input-group-btn">
+                    <button onclick="eel.get_file_path()" type="button" class="btn btn-light btn-default">Browse</button>
+               </span>
+            </div>
         </div>
         <!-- Selection and download button -->
-        <div class="container-fluid text-center">
-            <button onclick="convert_youtube_video()" type="button" class="btn btn-light btn-default">Selectt</button>
-            <button onclick="download_selected()" type="button" class="btn btn-light btn-default">Download</button>
+        <div style="width: 100%;" class="container-fluid text-center">
+            <div class="btn-group d-flex">
+                <button id="da" onclick="eel.download_audio()" type="button" class="btn btn-light btn-default">Download Audio</button>
+                <button id="dv" onclick="eel.download_video()" type="button" class="btn btn-light btn-default">Dowload Video</button>
+              </div>
         </div>
     </div>
     <script>
+        //Set thumbnail
         eel.expose(setThumbnailandTitle)
         function setThumbnailandTitle(thumbnail, title) {
             document.getElementById("thumbnail").src = thumbnail;
             document.getElementById("title").innerHTML = title;
             document.getElementById("wrapper").style.display = "block";
+            onoffButtons(true);
+        }
+        //Set filepath
+        eel.expose(setFilePath)
+        function setFilePath(folder) {
+            document.getElementById("filepath").value = folder
+            onoffButtons(false)
+        }
+        function onoffButtons(yn) {
+            if (yn == true) {
+                document.getElementById("da").disabled = true;
+                document.getElementById("dv").disabled = true;
+            } else {
+                document.getElementById("da").disabled = false;
+                document.getElementById("dv").disabled = false;  
+            }
+
         }
     </script>
 </body>
