@@ -13,12 +13,14 @@
         <script type = "text/javascript" src="js/script.js"></script>
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="/eel.js"></script>
-        <script type="text/javascript"></script>
+        <script type="text/javascript">
+
+        </script>
     </head>
     <body style="background-color:#303030;">
         <!-- Header-->
         <div style="padding-top: 40px; padding-bottom: 40px;" class="container-fluid text-center">
-            <img src="img/YouTube-Logo.png" width="250px;" alt="">
+            <img src="img/YouTube-Logo.png" width="350px;" alt="">
         </div>
         <!-- Input field and buttons-->
         <div class="container-fluid text-center">
@@ -43,8 +45,7 @@
             eel.expose(video_exists)
             function video_exists(yesno) {
                 if (yesno) {
-                    window.close()
-                    eel.redirect_to_download()
+                    window.location.replace("/download.html")
                 } else {
                     var x = document.getElementById("ERROR").style.display = "block";
                 }
@@ -54,5 +55,12 @@
                 var x = document.getElementById("ERROR").style.display = "none";
             }
         </script>
+        <footer class="fixed-bottom bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div style="color: #212529" class="text-center p-3" style="background-color: #474747;">
+                © 2020 Copyright: Arvid Anderson
+            </div>
+            <!-- Copyright -->
+        </footer>
     </body>
 </html>
