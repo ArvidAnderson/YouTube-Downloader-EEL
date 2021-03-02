@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YouTube Downloader</title>
+        <link rel="icon" href="favicon.ico" />
+        <!-- Favicon made by Vecteezy.com-->
+        <link rel="manifest" href="/site.webmanifest">
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />
+        <script type = "text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+        <script type = "text/javascript" src="js/bootstrap.min.js"></script>
+        <script type = "text/javascript" src="js/script.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript"></script>
+    </head>
+    <body style="background-color:#303030;">
+        <!-- Header-->
+        <div style="padding-top: 40px; padding-bottom: 40px;" class="container-fluid text-center">
+            <img src="img/YouTube-Logo.png" width="250px;" alt="">
+        </div>
+        <!-- Input field and buttons-->
+        <div class="container-fluid text-center">
+            <div class="input-group">
+                <input onchange="ErrorHide()" onclick="ErrorHide()" id="yourinput" class="form-control input-lg" type="text" placeholder="Paste your YouTube video url here">
+                <span class="input-group-btn">
+                     <button onclick="convert_youtube_video()" type="button" class="btn btn-light btn-default">Convert</button>
+                </span>
+            </div>
+            <div style="margin-top: 8px; display: none;" id="ERROR" class="alert alert-danger" role="alert">
+                This video is not found, please try again!
+            </div>
+        </div>
+        <script>
+            // Passthough the text to python
+            function convert_youtube_video() {
+                var text = document.getElementById("yourinput").value;
+                eel.get_youtube_video_passthrough(text);
+                return;//
+            }
+            //Check if the video exists redirect else show error video not found
+            eel.expose(video_exists)
+            function video_exists(yesno) {
+                if (yesno) {
+                    window.close()
+                    eel.redirect_to_download()
+                } else {
+                    var x = document.getElementById("ERROR").style.display = "block";
+                }
+            }
+            //ErrorHide function
+            function ErrorHide() {
+                var x = document.getElementById("ERROR").style.display = "none";
+            }
+        </script>
+    </body>
+</html>
